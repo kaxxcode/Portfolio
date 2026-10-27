@@ -1,6 +1,8 @@
 import AnimatedContent from "@/components/AnimatedContent";
-import CursorGrid from "@/components/CursorGrid";
+import PaperCrumple from "@/components/PaperCrumple";
+import StarBorder from "@/components/StarBorder";
 import Tabs from "@/components/Tabs";
+import TechText from "@/components/TechText";
 import ContributionGraph from "@/components/ContributionGraph";
 import { experience, profile, projects } from "@/lib/data";
 
@@ -13,6 +15,18 @@ const iconProps = {
   strokeWidth: 1.8,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
+};
+
+// Shared look for every StarBorder button: light surface; a thin Heddle-blue line circles the edge on hover only (no glow).
+const star = {
+  theme: "light" as const,
+  color: "#1478E8",
+  radius: 12,
+  duration: 5,
+  trailLength: 0.35,
+  glow: 0,
+  hover: "reveal" as const, // nothing at rest, the line only appears while hovering
+  clickPulse: false,
 };
 
 const socials = [
@@ -59,43 +73,34 @@ const socials = [
 
 export default function Home() {
   return (
-    <CursorGrid
-      cellSize={60}
-      color="#151515"
-      highlight="area"
-      gridStyle="lines"
-      radius={140}
-      holdTime={400}
-      fadeDuration={800}
-      fillOpacity={0.06}
-      gridOpacity={0.22}
-      spotlight={0.6}
-      clickPulse
-    >
-    <div className="mx-auto max-w-[1100px] px-6">
+    <div className="mx-auto max-w-[1100px] overflow-x-clip px-6">
       <AnimatedContent trigger="mount" distance={-24} blur={6} duration={0.8}>
       <header className="flex items-center justify-between border-b border-line py-7">
         <span className="text-[22px] font-semibold tracking-tight">kaxxcode</span>
         <nav className="flex items-center gap-2">
-          <a
+          <StarBorder
+            as="a"
+            {...star}
             href={profile.gmailCompose}
             target="_blank"
             rel="noreferrer"
-            className="rounded-xl px-4 py-2.5 text-[15px] text-muted transition hover:text-ink"
+            className="px-4! py-2.5! text-[15px]"
           >
             Say hello
-          </a>
-          <a
+          </StarBorder>
+          <StarBorder
+            as="a"
+            {...star}
             href="/Krishna-Kumar-Jha-Resume.pdf"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-line bg-white px-4 py-2.5 text-[15px] transition hover:border-ink/30"
+            className="px-4! py-2.5! text-[15px]"
           >
             My resume
             <svg {...iconProps} width={16} height={16}>
               <path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" />
             </svg>
-          </a>
+          </StarBorder>
         </nav>
       </header>
       </AnimatedContent>
@@ -117,10 +122,24 @@ export default function Home() {
               height={96}
               className="size-24 rounded-full border-4 border-white object-cover shadow-[0_2px_12px_rgba(0,0,0,0.12)]"
             />
-            <div>
-              <h1 className="text-[44px] font-semibold leading-none tracking-tight">
-                {profile.name}
-              </h1>
+            <div className="min-w-0 flex-1">
+              <h1 className="sr-only">{profile.name}</h1>
+              {/* Taller than the text so the selection frame, labels and specks have room; margins pull it back in. */}
+              <div className="-my-6 -ml-4 h-24 w-[calc(100%+1rem)] max-w-[360px]">
+                <TechText
+                  text={profile.name}
+                  fontSize={46}
+                  fontWeight={600}
+                  letterSpacing={-0.035}
+                  align="left"
+                  accentColor="#1478E8"
+                  reveal="letter"
+                  specks={10}
+                  sweep={false}
+                  intro="assemble"
+                  introDuration={1.6}
+                />
+              </div>
               <p className="mt-2.5 flex items-center gap-1.5 text-[15px] text-muted">
                 <svg {...iconProps} width={16} height={16}>
                   <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" />
@@ -196,16 +215,18 @@ export default function Home() {
             className="mt-10 flex gap-3"
           >
             {socials.map((s) => (
-              <a
+              <StarBorder
+                as="a"
                 key={s.label}
+                {...star}
                 href={s.href}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={s.label}
-                className="flex size-11 items-center justify-center rounded-xl border border-line bg-white text-ink transition hover:-translate-y-0.5 hover:border-ink/30"
+                className="size-11 p-0!"
               >
                 {s.icon}
-              </a>
+              </StarBorder>
             ))}
           </AnimatedContent>
         </section>
@@ -224,12 +245,28 @@ export default function Home() {
         </div>
       </main>
 
+      <AnimatedContent distance={40} blur={8} duration={0.9}>
+        <section className="border-t border-line pb-16 pt-14 text-center">
+          <PaperCrumple
+            src="/paper-note.jpg?v=2"
+            alt="A handwritten note from Krishna with small sketches of a motorbike, mountains, chai and a laptop"
+            width={660}
+            height={520}
+            sceneHeight={640}
+            style={{ height: "clamp(280px, 62vw, 640px)" }}
+            releaseBehavior="restore"
+            lightAngle={-30}
+            shadowOpacity={0.1}
+          />
+          <p className="mt-2 text-[13px] text-muted">psst, hold the paper and drag. it crumples.</p>
+        </section>
+      </AnimatedContent>
+
       <AnimatedContent distance={24} duration={0.9}>
         <footer className="border-t border-line py-8 text-[13px] text-muted">
           © {new Date().getFullYear()} {profile.name}
         </footer>
       </AnimatedContent>
     </div>
-    </CursorGrid>
   );
 }

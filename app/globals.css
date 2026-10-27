@@ -19,12 +19,13 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Custom blue arrow cursor (hotspot = the tip). Falls back to the system cursor. */
+/* macOS-style cursors: black arrow with a white outline, and the white pointing hand over links.
+   The hotspot is the tip of the arrow / the fingertip. Falls back to the system cursor. */
 :root {
-  --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6 4 6 23.5 10.6 19.3 13.8 26.6 17.3 25.1 14.1 17.9 20.6 17.9Z' fill='%233b9eff' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E")
-    6 4, auto;
-  --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6 4 6 23.5 10.6 19.3 13.8 26.6 17.3 25.1 14.1 17.9 20.6 17.9Z' fill='%231478e8' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E")
-    6 4, pointer;
+  --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='24' viewBox='0 0 20 28'%3E%3Cpath d='M3 2V21.5L7.8 17.3L10.9 24.2L14 22.8L10.9 16H17.5Z' fill='black' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
+    2 1, auto;
+  --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24'%3E%3Cpath d='M9.5 4.5C9.5 3.4 10.3 2.6 11.2 2.6C12.1 2.6 12.9 3.4 12.9 4.5V10.2C13.2 9.8 13.7 9.6 14.2 9.6C15.1 9.6 15.7 10.1 15.9 10.8C16.2 10.5 16.7 10.3 17.2 10.3C18.1 10.3 18.7 10.8 18.9 11.6C19.2 11.4 19.6 11.3 20 11.3C21 11.3 21.7 12 21.7 13V17C21.7 20 19.6 22 16.8 22H14.6C12.8 22 11.7 21.2 10.6 19.8L6.2 14.2C5.6 13.4 5.8 12.5 6.5 12.1C7.2 11.7 8 12 8.5 12.6L9.5 13.8Z' fill='white' stroke='black' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E")
+    10 2, pointer;
 }
 
 html,
