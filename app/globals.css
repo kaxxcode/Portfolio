@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #faf9f7;
+  --color-ink: #151515;
+  --color-muted: #6b6b68;
+  --color-line: #ebe9e4;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Custom blue arrow cursor (hotspot = the tip). Falls back to the system cursor. */
+:root {
+  --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6 4 6 23.5 10.6 19.3 13.8 26.6 17.3 25.1 14.1 17.9 20.6 17.9Z' fill='%233b9eff' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E")
+    6 4, auto;
+  --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6 4 6 23.5 10.6 19.3 13.8 26.6 17.3 25.1 14.1 17.9 20.6 17.9Z' fill='%231478e8' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E")
+    6 4, pointer;
+}
+
+html,
+body {
+  cursor: var(--cursor-default);
+}
+
+a,
+button,
+[role="tab"] {
+  cursor: var(--cursor-pointer) !important;
+}
+
+::selection {
+  background: #d9f2dc;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
