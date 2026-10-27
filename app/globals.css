@@ -39,6 +39,14 @@ button,
   cursor: var(--cursor-pointer) !important;
 }
 
+/* Scrollable, but without a visible scrollbar. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 ::selection {
   background: #d9f2dc;
 }

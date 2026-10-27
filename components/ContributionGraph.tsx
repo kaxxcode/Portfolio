@@ -1,3 +1,4 @@
+import ScrollEnd from "@/components/ScrollEnd";
 import { profile } from "@/lib/data";
 
 type Day = { date: string; count: number; level: number };
@@ -82,7 +83,9 @@ export default async function ContributionGraph() {
         </a>
       </div>
 
-      <div className="overflow-x-auto rounded-2xl border border-line bg-white p-4">
+      <div className="rounded-2xl border border-line bg-white p-4">
+        {/* No visible scrollbar; starts scrolled to the right so the latest weeks show first. */}
+        <ScrollEnd className="no-scrollbar overflow-x-auto">
         <div className="inline-flex flex-col gap-1">
           <div className="flex gap-[3px] pl-0 text-[10px] text-muted">
             {monthLabels.map((m, i) => (
@@ -110,6 +113,7 @@ export default async function ContributionGraph() {
             ))}
           </div>
         </div>
+        </ScrollEnd>
         <div className="mt-3 flex items-center justify-end gap-1 text-[11px] text-muted">
           Less
           {levelColor.map((c) => (
