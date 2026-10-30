@@ -120,6 +120,7 @@ export const posts: Post[] = [
       "And slowly, things started working out again.",
       "We were recognised among the Top 20 Under 20 entrepreneurs at AIBoomi Annual.",
       "AIBoomi sponsored our event tickets, and our college sponsored our trip.",
+      "![I sat on a plane for the first time with this person :)](/blog/on-the-flight.jpg)",
       "I remember thinking how crazy the whole thing was.",
       "A couple of years ago, we were spending our own money to participate in hackathons and coming back with nothing.",
       "Now people were actually supporting us and inviting us because of what we were building.",
