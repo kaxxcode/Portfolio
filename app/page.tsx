@@ -1,33 +1,12 @@
 import AnimatedContent from "@/components/AnimatedContent";
 import PaperCrumple from "@/components/PaperCrumple";
+import SiteHeader from "@/components/SiteHeader";
 import StarBorder from "@/components/StarBorder";
 import Tabs from "@/components/Tabs";
 import TechText from "@/components/TechText";
 import ContributionGraph from "@/components/ContributionGraph";
 import { experience, profile, projects } from "@/lib/data";
-
-const iconProps = {
-  width: 18,
-  height: 18,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.8,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
-
-// Shared look for every StarBorder button: light surface; a thin Heddle-blue line circles the edge on hover only (no glow).
-const star = {
-  theme: "light" as const,
-  color: "#1478E8",
-  radius: 12,
-  duration: 5,
-  trailLength: 0.35,
-  glow: 0,
-  hover: "reveal" as const, // nothing at rest, the line only appears while hovering
-  clickPulse: false,
-};
+import { iconProps, star } from "@/lib/ui";
 
 const socials = [
   {
@@ -74,36 +53,7 @@ const socials = [
 export default function Home() {
   return (
     <div className="mx-auto max-w-[1100px] overflow-x-clip px-6">
-      <AnimatedContent trigger="mount" distance={-24} blur={6} duration={0.8}>
-      <header className="flex items-center justify-between border-b border-line py-7">
-        <span className="text-[22px] font-semibold tracking-tight">kaxxcode</span>
-        <nav className="flex items-center gap-2">
-          <StarBorder
-            as="a"
-            {...star}
-            href={profile.gmailCompose}
-            target="_blank"
-            rel="noreferrer"
-            className="px-4! py-2.5! text-[15px]"
-          >
-            Say hello
-          </StarBorder>
-          <StarBorder
-            as="a"
-            {...star}
-            href="/Krishna-Kumar-Jha-Resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="px-4! py-2.5! text-[15px]"
-          >
-            My resume
-            <svg {...iconProps} width={16} height={16}>
-              <path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" />
-            </svg>
-          </StarBorder>
-        </nav>
-      </header>
-      </AnimatedContent>
+      <SiteHeader />
 
       <main className="grid grid-cols-[minmax(0,1fr)] gap-14 py-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
         <section className="min-w-0 lg:sticky lg:top-10 lg:self-start">
@@ -202,6 +152,18 @@ export default function Home() {
               I also edited videos for 6+ years (100M+ views across creators, startups and
               brands), so I&apos;m a bit obsessed with pacing and how things feel. Right now I&apos;m
               studying CS at MIT ADT and I&apos;m VP of the Innovation Council there.
+            </p>
+            <p>
+              I also make{" "}
+              <a
+                href={profile.contentUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-ink underline decoration-line decoration-2 underline-offset-4 transition hover:decoration-[#1478E8]"
+              >
+                content
+              </a>{" "}
+              :)
             </p>
           </AnimatedContent>
 

@@ -9,6 +9,7 @@ export const profile = {
   github: "https://github.com/kaxxcode",
   linkedin: "https://www.linkedin.com/in/krishna-kumar-jha-b18a262a4/",
   instagram: "https://www.instagram.com/kisna.fr",
+  contentUrl: "https://www.instagram.com/krish.env",
 };
 
 export type Item = {
