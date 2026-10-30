@@ -1,20 +1,45 @@
 import type { ReactNode } from "react";
+import HeddlePill from "@/components/HeddlePill";
 
-/** Turns **bold** and *italic* in a string into real elements (no raw HTML involved). */
+/**
+ * Turns **bold** and *italic* into real elements (no raw HTML involved) and swaps every
+ * "Heddle" for the Heddle button used on the home page.
+ */
 function inline(text: string): ReactNode[] {
-  return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
-      return (
-        <strong key={i} className="font-semibold text-ink">
-          {part.slice(2, -2)}
-        </strong>
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\bHeddle\b)/g);
+  const out: ReactNode[] = [];
+
+  parts.forEach((part, i) => {
+    if (!part) return;
+
+    if (part === "Heddle") {
+      // Keep punctuation that follows ("Heddle," / "Heddle.") glued to the button so a line never breaks between them.
+      const next = parts[i + 1];
+      let glue = "";
+      if (next && !next.startsWith("*") && next !== "Heddle") {
+        glue = /^[.,;:!?)"']+/.exec(next)?.[0] ?? "";
+        if (glue) parts[i + 1] = next.slice(glue.length);
+      }
+      out.push(
+        <span key={i} className="whitespace-nowrap">
+          <HeddlePill />
+          {glue}
+        </span>,
       );
+    } else if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      out.push(
+        <strong key={i} className="font-semibold text-ink">
+          {inline(part.slice(2, -2))}
+        </strong>,
+      );
+    } else if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
+      out.push(<em key={i}>{inline(part.slice(1, -1))}</em>);
+    } else {
+      out.push(part);
     }
-    if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
-      return <em key={i}>{part.slice(1, -1)}</em>;
-    }
-    return part;
   });
+
+  return out;
 }
 
 const IMAGE = /^!\[(.*)\]\((.+)\)$/;
@@ -27,7 +52,7 @@ export default function BlogContent({ blocks }: { blocks: string[] }) {
         if (block.startsWith("## ")) {
           return (
             <h2 key={i} className="!mt-14 text-[26px] font-semibold leading-tight tracking-tight text-ink">
-              {block.slice(3)}
+              {inline(block.slice(3))}
             </h2>
           );
         }

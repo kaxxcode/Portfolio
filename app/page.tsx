@@ -1,4 +1,5 @@
 import AnimatedContent from "@/components/AnimatedContent";
+import HeddlePill from "@/components/HeddlePill";
 import PaperCrumple from "@/components/PaperCrumple";
 import SiteHeader from "@/components/SiteHeader";
 import StarBorder from "@/components/StarBorder";
@@ -111,32 +112,7 @@ export default function Home() {
             <p>
               Hey, I&apos;m Krishna. I co-founded{" "}
               <span className="whitespace-nowrap">
-                <a
-                  href={profile.heddleUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group relative inline-flex items-center gap-2 rounded-full border border-[#1478E8]/20 bg-gradient-to-b from-white to-[#eaf3ff] py-[3px] pl-[3px] pr-3 align-middle text-[16px] font-semibold leading-none text-ink shadow-[0_1px_2px_rgba(20,120,232,0.10)] transition duration-300 hover:-translate-y-0.5 hover:border-[#1478E8]/50 hover:shadow-[0_8px_18px_-8px_rgba(20,120,232,0.55)]"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://heddle.so/apple-touch-icon.png"
-                    alt=""
-                    width={24}
-                    height={24}
-                    className="size-6 rounded-full object-cover transition duration-500 group-hover:rotate-[360deg]"
-                  />
-                  Heddle
-                  <svg
-                    {...iconProps}
-                    width={13}
-                    height={13}
-                    strokeWidth={2.2}
-                    className="-ml-0.5 text-[#1478E8] transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  >
-                    <path d="M7 17 17 7M8 7h9v9" />
-                  </svg>
-                </a>
-                ,
+                <HeddlePill />,
               </span>{" "}
               where we turn a live product workflow into a walkthrough video, so teams don&apos;t
               have to record and edit demos by hand. 200+ people are using it in beta and we
